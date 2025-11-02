@@ -48,7 +48,7 @@ export const useTodoData = () => {
 
   const Tick = (item, index) => {
     setTickItem([...tickItem, item]);
-    const remainingItems = items.filter((_, i) => i !== index);
+    const remainingItems = items.filter((element, i) => i !== index);
     setItems(remainingItems);
   };
 
@@ -70,13 +70,13 @@ export const useTodoData = () => {
   };
 
   const del = (item) => {
-    const newitem = items.filter((element) => element !== item);
+    const newitem = items.filter((element,i) => element !== item);
     setItems(newitem);
   };
 
   const undo = (item, index) => {
     setItems([...items, item]);
-    const remainingundoItems = tickItem.filter((_, i) => i !== index);
+    const remainingundoItems = tickItem.filter((element, i) => i !== index);
     setTickItem(remainingundoItems);
   };
   return {
