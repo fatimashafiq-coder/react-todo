@@ -1,42 +1,105 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #111;
+}
+
+.input-section {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #333;
+  color: white;
+}
+
+.input-row button {
+  width: auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-row button:hover {
+  background-color: #333;
+}
+
+.list {
+  width: 100%;
+}
+
+.list p {
+  background-color: #333;
+  padding: 6px;
+  border-radius: 5px;
+  margin: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tick_box {
+  background-color: #6c63ff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 280px;
+  color: white;
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+}
+
+.tick_box h3 {
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.tick_box p {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 6px;
+  border-radius: 5px;
+  margin: 6px 0;
+  /* margin-left: 7rem; */
 }

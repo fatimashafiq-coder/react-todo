@@ -1,35 +1,91 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { MdDelete } from "react-icons/md";
+import { TiTick } from "react-icons/ti";
+import { CiEdit } from "react-icons/ci";
+import { BiUndo } from "react-icons/bi";
+import { useTodoData } from "./useTodoData";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    inputValue,
+    handleChange,
+    buttonClick,
+    items,
+    editIndex,
+    editValue,
+    handleEditChange,
+    startEdit,
+    updateItem,
+    del,
+    Tick,
+    tickItem,
+    undo,
+  } = useTodoData();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <div className="input-section">
+        <div className="input-row">
+          <input
+            type="text"
+            onChange={handleChange}
+            value={inputValue}
+            placeholder="Enter a task..."
+          />
+          <button onClick={buttonClick}>Add</button>
+        </div>
+
+        <div className="list">
+          {items.map((item, index) => (
+            <p key={index}>
+              <TiTick onClick={() => Tick(item, index)} style={{ cursor: "pointer" }} />
+              {editIndex === index ? (
+                <>
+                  <input
+                    type="text"
+                    value={editValue}
+                    onChange={handleEditChange}  
+                    style={{ marginLeft: "0.5rem" }}
+                  />
+                  <button
+                    onClick={() => updateItem(index)}
+                    style={{ marginLeft: "0.5rem" }}
+                  >
+                    Update
+                  </button>
+                </>
+              ) : (
+                <>
+                  {item}
+                  <CiEdit
+                    onClick={() => startEdit(item, index)}
+                    style={{ cursor: "pointer", marginLeft: "0.5rem" }}
+                  />
+                  <MdDelete
+                    onClick={() => del(item)}
+                    style={{ cursor: "pointer", marginLeft: "0.5rem" }}
+                  />
+                </>
+              )}
+            </p>
+          ))}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="tick_box">
+        <h3>Completed Tasks</h3>
+        {tickItem.map((item, index) => (
+          <p key={index}>
+            {item}
+            <BiUndo
+              onClick={() => undo(item, index)}
+              style={{ cursor: "pointer", marginLeft: "10rem" }}
+            />
+          </p>
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
