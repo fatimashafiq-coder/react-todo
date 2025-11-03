@@ -2,26 +2,31 @@ import { MdDelete } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 import { BiUndo } from "react-icons/bi";
-import { useTodoData } from "./useTodoData";
+import { useTodoData } from "./Hooks/useTodoData";
+import { storedLocalStorage} from "./Hooks/storedLocalStorage";
 import "./App.css";
 
 function App() {
   const {
     inputValue,
     handleChange,
-    buttonClick,
-    items,
+    AddButtonClick,
     editIndex,
     editValue,
     handleEditChange,
     startEdit,
     updateItem,
     del,
-    Tick,
-    tickItem,
+    tick,
     undo,
   } = useTodoData();
 
+  const {
+    items,
+    setItems,
+    tickItem,
+    setTickItem,
+  } = storedLocalStorage();
   return (
     <div className="container">
       <div className="input-section">
@@ -32,24 +37,24 @@ function App() {
             value={inputValue}
             placeholder="Enter a task..."
           />
-          <button onClick={buttonClick}>Add</button>
+          <button onClick={AddButtonClick}>Add</button>
         </div>
 
         <div className="list">
           {items.map((item, index) => (
             <p key={index}>
-              <TiTick onClick={() => Tick(item, index)} style={{ cursor: "pointer" }} />
+              <input type="checkbox" className="titick" onClick={() => tick(item, index)} />
               {editIndex === index ? (
                 <>
                   <input
                     type="text"
                     value={editValue}
-                    onChange={handleEditChange}  
+                    onChange={handleEditChange}
                     style={{ marginLeft: "0.5rem" }}
                   />
                   <button
+                  className="update_button"
                     onClick={() => updateItem(index)}
-                    style={{ marginLeft: "0.5rem" }}
                   >
                     Update
                   </button>
@@ -58,12 +63,12 @@ function App() {
                 <>
                   {item}
                   <CiEdit
+                  className="icon"
                     onClick={() => startEdit(item, index)}
-                    style={{ cursor: "pointer", marginLeft: "0.5rem" }}
                   />
                   <MdDelete
+                   className="icon"
                     onClick={() => del(item)}
-                    style={{ cursor: "pointer", marginLeft: "0.5rem" }}
                   />
                 </>
               )}
@@ -78,8 +83,8 @@ function App() {
           <p key={index}>
             {item}
             <BiUndo
+            className="undo"
               onClick={() => undo(item, index)}
-              style={{ cursor: "pointer", marginLeft: "10rem" }}
             />
           </p>
         ))}
@@ -87,5 +92,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -81,7 +81,13 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+.titick{
+  cursor: pointer;
+}
+.icon{
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
 .tick_box {
   background-color: #6c63ff;
   padding: 20px;
@@ -102,4 +108,11 @@ body {
   border-radius: 5px;
   margin: 6px 0;
   /* margin-left: 7rem; */
+}
+.undo{
+  cursor: pointer;
+  margin-left: 10rem;
+}
+.update_button{
+  margin-left:0.5rem ;
 }
