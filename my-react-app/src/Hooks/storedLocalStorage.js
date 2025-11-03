@@ -1,40 +1,24 @@
 import { useState, useEffect } from "react";
-// import {constData} from "./constData";
+
 export const storedLocalStorage = () => {
- 
-   const saveCompletedData = "todoCompletedData";
-   const saveData = "todoData";
-    const localStorageData = (key) => {
-        try {
-            const showData = localStorage.getItem(key);
-            if (!showData || showData === "undefined") return [];
-            return JSON.parse(showData);
-        } catch (error) {
-            console.error("Error parsing localStorage data:", error);
-            return [];
-        }
-    };
+  const saveData = "todoData";
 
-    const [tickItem, setTickItem] = useState(() => {
-        return localStorageData(saveCompletedData);
-    });
+  const localStorageData = (key) => {
+    try {
+      const showData = localStorage.getItem(key);
+      if (!showData || showData === "undefined") return [];
+      return JSON.parse(showData);
+    } catch (error) {
+      console.error("Error parsing localStorage data:", error);
+      return [];
+    }
+  };
 
-    const [items, setItems] = useState(() => {
-        return localStorageData(saveData);
-    });
+  const [todos, setTodos] = useState(() => localStorageData(saveData));
 
-    useEffect(() => {
-        localStorage.setItem(saveCompletedData, JSON.stringify(tickItem));
-    }, [tickItem]);
+  useEffect(() => {
+    localStorage.setItem(saveData, JSON.stringify(todos));
+  }, [todos]);
 
-    useEffect(() => {
-        localStorage.setItem(saveData, JSON.stringify(items));
-    }, [items]);
-
-    return {
-        items,
-        setItems,
-        tickItem,
-        setTickItem,
-    };
+  return { todos, setTodos };
 };
