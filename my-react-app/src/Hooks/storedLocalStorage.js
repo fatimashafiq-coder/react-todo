@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 export const storedLocalStorage = () => {
   const saveData = "todoData";
-
   const localStorageData = (key) => {
     try {
       const showData = localStorage.getItem(key);
@@ -19,6 +18,5 @@ export const storedLocalStorage = () => {
   useEffect(() => {
     localStorage.setItem(saveData, JSON.stringify(todos));
   }, [todos]);
-
   return { todos, setTodos };
 };

@@ -3,25 +3,24 @@ import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 
 export const ActiveTodos = ({ todos, setTodos }) => {
-  const [editText, setEditText] = useState("");
-  const [editingItem, setEditingItem] = useState(null);
+  const [editing, setEditing] = useState(null);
 
   const activeTodos = todos.filter((t) => !t.isCompleted);
 
   const startEdit = (item) => {
-    setEditingItem(item);
-    setEditText(item.text);
+    setEditing({ id: item.id, text: item.text });
   };
 
-  const handleEditChange = (e) => setEditText(e.target.value);
+  const handleEditChange = (e) => {
+    setEditing({ ...editing, text: e.target.value });
+  };
 
   const updateItem = () => {
     const updated = todos.map((t) =>
-      t.id === editingItem.id ? { ...t, text: editText } : t
+      t.id === editing.id ? { ...t, text: editing.text } : t
     );
     setTodos(updated);
-    setEditingItem(null);
-    setEditText("");
+    setEditing(null);
   };
 
   const deleteItem = (item) => {
@@ -49,12 +48,12 @@ export const ActiveTodos = ({ todos, setTodos }) => {
               onChange={() => handleCompleteTask(item)}
             />
 
-            {editingItem?.id === item.id ? (
+            {editing?.id === item.id ? (
               <div className="edit-section">
                 <input
                   className="edit_input"
                   type="text"
-                  value={editText}
+                  value={editing.text}
                   onChange={handleEditChange}
                 />
                 <button className="update_button" onClick={updateItem}>

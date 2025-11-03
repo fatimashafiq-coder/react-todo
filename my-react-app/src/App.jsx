@@ -18,7 +18,6 @@ function App() {
         <Todoinput addButtonClick={addButtonClick} />
         <ActiveTodos todos={todos} setTodos={setTodos} />
       </div>
-
       <CompletedTasks todos={todos} setTodos={setTodos} />
     </div>
   );
