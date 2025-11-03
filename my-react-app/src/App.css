@@ -119,3 +119,24 @@ body {
 .edit_input{
   margin-left: 0.5rem;
 }
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todo-text {
+  flex-grow: 1;
+  margin: 0;
+}
+
+.icons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.edit-section {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}

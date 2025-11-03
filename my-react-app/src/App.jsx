@@ -6,10 +6,9 @@ import "./App.css";
 
 function App() {
   const { todos, setTodos } = storedLocalStorage();
-
-  const addButtonClick = (newItem) => {
-    if (newItem.trim() !== "") {
-      setTodos([...todos, { text: newItem, isCompleted: false }]);
+  const addButtonClick = (newTodo) => {
+    if (newTodo.text.trim() !== "") {
+      setTodos([...todos, newTodo]);
     }
   };
 

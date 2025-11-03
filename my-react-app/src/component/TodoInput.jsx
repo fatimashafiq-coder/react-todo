@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const Todoinput = ({ addButtonClick }) => {
   const [inputValue, setInputValue] = useState("");
@@ -7,7 +8,13 @@ export const Todoinput = ({ addButtonClick }) => {
 
   const handleAdd = () => {
     if (inputValue.trim() === "") return;
-    addButtonClick(inputValue);
+    const newTodo = {
+      id: uuidv4(),
+      text: inputValue,
+      isCompleted: false,
+    };
+
+    addButtonClick(newTodo);
     setInputValue("");
   };
 
