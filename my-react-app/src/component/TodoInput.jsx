@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export const Todoinput = ({ addButtonClick }) => {
+export const TodoInput = ({ addButtonClick }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => setInputValue(e.target.value);

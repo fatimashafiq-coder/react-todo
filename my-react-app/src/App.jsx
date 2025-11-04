@@ -1,4 +1,4 @@
-import { Todoinput } from "./component/Todoinput";
+import { TodoInput } from "./component/TodoInput";
 import { ActiveTodos } from "./component/ActiveTodos";
 import { CompletedTasks } from "./component/CompletedTasks";
 import { storedLocalStorage } from "./Hooks/storedLocalStorage";
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="container">
       <div className="input-section">
-        <Todoinput addButtonClick={addButtonClick} />
+        <TodoInput addButtonClick={addButtonClick} />
         <ActiveTodos todos={todos} setTodos={setTodos} />
       </div>
       <CompletedTasks todos={todos} setTodos={setTodos} />
