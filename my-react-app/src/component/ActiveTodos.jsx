@@ -1,25 +1,11 @@
-import { useState } from "react";
 import TodoItem from "./TodoItem";
 
-export const ActiveTodos = ({ todos, setTodos }) => {
-  const [editing, setEditing] = useState(null);
-
-  const activeTodos = todos.filter((t) => !t.isCompleted);
-
-  const startEdit = (item) => {
-    setEditing({ id: item.id, text: item.text });
-  };
-
-  const handleEditChange = (e) => {
-    setEditing({ ...editing, text: e.target.value });
-  };
-
-  const updateItem = () => {
+export const ActiveTodos = ({ todos, setTodos, activeTodos }) => {
+  const updateItem = (updatedItem) => {
     const updated = todos.map((t) =>
-      t.id === editing.id ? { ...t, text: editing.text } : t
+      t.id === updatedItem.id ? { ...t, text: updatedItem.text } : t
     );
     setTodos(updated);
-    setEditing(null);
   };
 
   const deleteItem = (item) => {
@@ -43,9 +29,6 @@ export const ActiveTodos = ({ todos, setTodos }) => {
           <TodoItem
             key={item.id}
             item={item}
-            editing={editing}
-            startEdit={startEdit}
-            handleEditChange={handleEditChange}
             updateItem={updateItem}
             deleteItem={deleteItem}
             handleCompleteTask={handleCompleteTask}
